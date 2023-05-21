@@ -2,8 +2,8 @@ package member;
 
 public class MemberVO {
 	private int idx,level,point,totPoint;
-	private String mid, pwd, salt, name, nickName, identiNum, gender,
-					phone, address, email, startDay, lastLogin, userDel;
+	private String mid, pwd, salt, name, nickName, identiNum, gender,birthday,
+					phone, address, email, startDate, lastLogin, userDel;
 	
 	public int getIdx() {
 		return idx;
@@ -83,12 +83,6 @@ public class MemberVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getStartDay() {
-		return startDay;
-	}
-	public void setStartDay(String startDay) {
-		this.startDay = startDay;
-	}
 	public String getLastLogin() {
 		return lastLogin;
 	}
@@ -107,14 +101,28 @@ public class MemberVO {
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
-	
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+	public String getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
 	@Override
 	public String toString() {
 		return "MemberVO [idx=" + idx + ", level=" + level + ", point=" + point + ", totPoint=" + totPoint + ", mid=" + mid
 				+ ", pwd=" + pwd + ", salt=" + salt + ", name=" + name + ", nickName=" + nickName + ", identiNum=" + identiNum
-				+ ", gender=" + gender + ", phone=" + phone + ", address=" + address + ", email=" + email + ", startDay="
-				+ startDay + ", lastLogin=" + lastLogin + ", userDel=" + userDel + "]";
+				+ ", gender=" + gender + ", birthday=" + birthday + ", phone=" + phone + ", address=" + address + ", email="
+				+ email + ", startDate=" + startDate + ", lastLogin=" + lastLogin + ", userDel=" + userDel + "]";
 	}
+	
+	
+	
 	
 	
 	

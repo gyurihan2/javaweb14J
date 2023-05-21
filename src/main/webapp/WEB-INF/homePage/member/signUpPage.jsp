@@ -7,7 +7,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://kit.fontawesome.com/fa3667321f.js" crossorigin="anonymous"></script>
-	<title>title</title>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script src="${ctp}/script/member/woo.js" ></script>
+	<title>회원가입페이지</title>
 	<jsp:include page="/include/bs4.jsp"/>
 	<jsp:include page="/script/member/signScript.jsp"/>
 	<script>
@@ -15,11 +17,32 @@
     function submitOk() {
 			let dupulMid = $("#dupulMid").css("display");
 			let dupulNickName = $("#dupulNickName").css("display");
-			let statusPwd = regPwd(myform.pwd[0]);
-    	let dupulPwd = chkPwd();
+			//let statusPwd = regPwd(myform.pwd[0]);
+    	//let dupulPwd = chkPwd();
     	let statusNickName = $("#nickName").val();
     	let statusName = $("#name").val();
     	let statusEmail = $("#email1").val();
+    	
+    	let identiNum1= $("#identiNum1").val();
+    	let identiNum2= $("#identiNum2").val();
+    	let identiNum = identiNum1 + "-" + identiNum2;
+    	
+    	let email1 = myform.email1.value;
+    	let email2 = myform.email2.value;
+    	let email = email1 + "@" + email2;
+    	
+    	let phone1 = myform.phone1.value;
+    	let phone2 = myform.phone2.value;
+    	let phone3 = myform.phone3.value;
+    	
+    	let phone = phone1+"-"+phone2+"-"+phone3;
+    	
+    	// 유효성 검사 필요
+    	let postcode1 = myform.postcode.value;
+			let roadAddress1 = myform.roadAddress.value;
+			let detailAddress1 = myform.detailAddress.value;
+			let extraAddress1 = myform.extraAddress.value == "" ? " " : myform.extraAddress.value;
+			let address1 = postcode1 + "/" + roadAddress1 + "/"+detailAddress1+"/"+extraAddress1;
     	
 			if(dupulMid == "none"){
 				alert("아이디 중복 체크 확인하세요");
@@ -33,11 +56,11 @@
 				return false;
 			}
 		
-			else if(!statusPwd || !dupulPwd){
+			/* else if(!statusPwd || !dupulPwd){
 				alert("비밀번호를 확인하세요");
 				$("#pwd").focus();
 				return false;
-			}
+			} */
 			else if(statusNickName == ""){
 				alert("닉네임을 확인하세요")
 				$("#nickName").focus();
@@ -53,9 +76,13 @@
 				$("#email").focus();
 				return false;
 			}
-
-      alert("통과");
-			//myform.submit();
+			
+			myform.identiNum.value=identiNum;
+			myform.phone.value= phone;
+			myform.address1.value = postcode1 + "/" + roadAddress1 + "/"+detailAddress1+"/"+extraAddress1;
+    	myform.email.value = email;
+      //alert("통과");
+			myform.submit();
 		}
 	 
      
@@ -174,19 +201,12 @@
 	      <input type="text" class="form-control" id="name" placeholder="성명을 입력하세요." name="name" required />
 	    </div>
 	    <div class="form-group">
-	      <label for="email1">Email address:</label>
-	      <span class="ml-3" id="regEmail"></span>
+	      <label for="identiNum1">주민번호:</label>
+	      <span class="ml-3" id="regIdentiNum"></span>
 	        <div class="input-group mb-3">
-	          <input type="text" class="form-control" placeholder="Email을 입력하세요." id="email1" name="email1" required />
+	          <input type="text" class="form-control mr-1" placeholder="주민번호 입력하세요." id="identiNum1" name="identiNum1" maxlength=6 required />
 	          <div class="input-group-append">
-	            <select name="email2" class="custom-select">
-	              <option value="naver.com" selected>naver.com</option>
-	              <option value="hanmail.net">hanmail.net</option>
-	              <option value="hotmail.com">hotmail.com</option>
-	              <option value="gmail.com">gmail.com</option>
-	              <option value="nate.com">nate.com</option>
-	              <option value="yahoo.com">yahoo.com</option>
-	            </select>
+	            -<input type="password" class="form-control ml-1" id="identiNum2" name="identiNum2" maxlength=7 required/>
 	          </div>
 	        </div>
 	    </div>
@@ -211,7 +231,7 @@
 	      <div class="input-group mb-3">
 	        <div class="input-group-prepend">
 	          <span class="input-group-text">전화번호 :</span> &nbsp;&nbsp;
-	            <select name="tel1" class="custom-select">
+	            <select name="phone1" class="custom-select">
 	              <option value="010" selected>010</option>
 	              <option value="02">02</option>
 	              <option value="031">031</option>
@@ -225,9 +245,26 @@
 	              <option value="062">062</option>
 	            </select>-
 	        </div>
-	        <input type="text" name="tel2" size=4 maxlength=4 class="form-control"/>-
-	        <input type="text" name="tel3" size=4 maxlength=4 class="form-control"/>
+	        <input type="number" name="phone2" size=4 maxlength=4 class="form-control"/>-
+	        <input type="number" name="phone3" size=4 maxlength=4 class="form-control"/>
 	      </div>
+	    </div>
+	     <div class="form-group">
+	      <label for="email1">Email address:</label>
+	      <span class="ml-3" id="regEmail"></span>
+	        <div class="input-group mb-3">
+	          <input type="text" class="form-control" placeholder="Email을 입력하세요." id="email1" name="email1" required />
+	          <div class="input-group-append">
+	            <select name="email2" class="custom-select">
+	              <option value="naver.com" selected>naver.com</option>
+	              <option value="hanmail.net">hanmail.net</option>
+	              <option value="hotmail.com">hotmail.com</option>
+	              <option value="gmail.com">gmail.com</option>
+	              <option value="nate.com">nate.com</option>
+	              <option value="yahoo.com">yahoo.com</option>
+	            </select>
+	          </div>
+	        </div>
 	    </div>
 	    <div class="form-group">
 	      <label for="address">주소</label>
@@ -248,6 +285,10 @@
 	    </div>
 	    <button type="button" class="btn btn-secondary" id="memberJoin" onclick="submitOk()">회원가입</button> &nbsp;
 	    <button type="button" class="btn btn-secondary" onclick="">돌아가기</button>
+	    <input type="hidden" name="phone"/>
+	    <input type="hidden" name="email"/>
+	    <input type="hidden" name="address1"/>
+	    <input type="hidden" name="identiNum"/>
 	  </form>
 	</div>
 </div>

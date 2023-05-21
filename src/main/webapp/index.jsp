@@ -41,19 +41,19 @@
                </button>  
             </div>
             <div class="col text-center moviecontent movienext" >
-                <a href="#"><img name="movieChartImg" src="/javaweb/cgvProject/images/jw.jpg"></a>
+                <a href="#"><img name="movieChartImg" src="${ctp}/images/movieChart/jw.jpg"></a>
                 <br/><span name="movieChartName">존윅4</span>
             </div>
             <div class="col text-center moviecontent">
-                <a href="#"><img name="movieChartImg" src="/javaweb/cgvProject/images/slamdunk.jpg"></a>
+                <a href="#"><img name="movieChartImg" src="${ctp}/images/movieChart/slamdunk.jpg"></a>
                 <br/><span name="movieChartName">슬램덩크</span>
             </div>
             <div class="col text-center moviecontent">
-                <a href="#"><img name="movieChartImg" src="/javaweb/cgvProject/images/스즈메.jpg"></a>
+                <a href="#"><img name="movieChartImg" src="${ctp}/images/movieChart/스즈메.jpg"></a>
                 <br/><span name="movieChartName">스즈메의 문단속</span>
             </div>
             <div class="col text-center moviecontent">
-                <a href="#"><img name="movieChartImg" src="/javaweb/cgvProject/images/rebound.jpg"></a>
+                <a href="#"><img name="movieChartImg" src="${ctp}/images/movieChart/rebound.jpg"></a>
                 <br/><span name="movieChartName">리바운드</span>
             </div>
             <div class="col align-self-center movienext"><!--오른쪽 공백-->   

@@ -3,19 +3,28 @@
 	span{
 		font-size: x-small;
 	}
+	/* input type number 화살표 제거 */
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+	  -webkit-appearance: none;
+	  margin: 0;
+	}
 </style>
 <script>
 'use strict';
 let chkmid=false;
 
+// 유효성 검사
 function chkReg(str, reg) {
     return reg.test(str);
 }
 
+// input type number 입력값 제한
 function numberMaxLength(e){
     if(e.value.length > e.maxLength) e.value = e.value.slice(0, e.maxLength);
 }
 
+// 아이디 유효성 처리
 function regMid(mid){
     const regExp = /^[\w]{5,19}$/g; //영어 대/소문자, 숫자, '_' 입력 가능
     let status=document.getElementById("regMid");
@@ -33,8 +42,9 @@ function regMid(mid){
     
     return true;
 }
+//닉네임 유효성
 function regNickName(nickName){
-    const regExp = /^[\w가-힣]{5,19}$/g; //영어 대/소문자, 숫자, '_' 입력 가능
+    const regExp = /^[\w가-힣]{5,19}$/g; //한글,영어 대/소문자, 숫자, '_' 입력 가능
     let status=document.getElementById("regNickName");
    
     

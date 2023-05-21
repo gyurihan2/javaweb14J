@@ -6,13 +6,14 @@ create table member (
   pwd     	varchar(100) not null,					/* 회원 비밀번호(SHA256 암호화 처리) */
   salt			char(8) not null,								/* 비밀번호 보안을 위한 해시키 */
   name     	varchar(20) not null,					/* 회원 성명 */
+  birthday	varchar(15),
   nickName 	varchar(20) not null,
-  idnetiNum varchar(20) not null,
+  identiNum varchar(20) not null,
   gender		varchar(5) not null,
   phone			varchar(15) not null,
   address		varchar(100) not null,
   email			varchar(50) not null,
-  startDay	datetime not null default now(),
+  startDate	datetime not null default now(),
   lastLogin		datetime not null default now(),
   userDel		char(5) default 'NO',
   level			int(5) default 1,

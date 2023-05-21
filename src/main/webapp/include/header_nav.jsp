@@ -71,36 +71,40 @@
         <div class="d-inline-flex "><a href="${ctp}"><img src="${ctp}/images/topMenu/logo.png" style="width:117px; height:53px;"></a></div>
         <div class="d-inline-flex ">CULTUREPLEX</div>
         <div class="col-5"></div>
-        <div class="col ">
-            <div class="container text-center">
-                <div class="row">
-                    <div class="col" id="login">
-                    	<c:choose>
-                    		<c:when test="${!empty sMid}">
-		                      	<a href="${ctp}/LoginOut.mem" class="text-secondary">
-		                        	<img src="${ctp}/images/topMenu/login.png" style="width: 26px; height:26px;"><br/>로그아웃
-		                        </a>
-                    		</c:when>
-                    		<c:otherwise>
-		                      	<a href="${ctp}/LoginPage.mem" class="text-secondary">
-		                      		<img src="${ctp}/images/topMenu/login.png" style="width: 26px; height:26px;"><br/>로그인
-		                      	</a>
-                    		</c:otherwise>
-                    	</c:choose>
-                    </div>  
-                    <div class="col"><a href="#" class="text-secondary"><img src="${ctp}/images/topMenu/mycgv.png" style="width:26px; height:26px;"><br/>MY CGV</a></div>
-                   	<div class="col">
-	                   <c:choose>
-	                   <c:when test="${empty sMid}">
-		                    <a href="${ctp}/Join.mem" class="text-secondary"><img src="${ctp}/images/topMenu/register.png" style="width:26px; height:26px;"><br/>회원가입</a>
-	                   	</c:when>
-	                   	<c:otherwise>
-	                   		<c:out value="${sName}"/> 로그인중입니다.
-	                   	</c:otherwise>
-	                   </c:choose>
-                   	</div>
-                </div>
-            </div>
+        <!-- 로그인 메뉴 -->
+        <div class="navbar boreder pb-0">
+					<div class="mr-3">
+	      	<c:choose>
+	      		<c:when test="${!empty sMid}">
+	            	<a href="${ctp}/LoginOutOk.mem" class="text-secondary">
+	              	<img src="${ctp}/images/topMenu/login.png" style="width: 26px; height:26px;"><br/>로그아웃
+	              </a>
+	      		</c:when>
+	      		<c:otherwise>
+	            	<a href="${ctp}/LoginPage.mem" class="text-secondary">
+	            		<img src="${ctp}/images/topMenu/login.png" style="width: 26px; height:26px;"><br/>로그인
+	            	</a>
+	      		</c:otherwise>
+	      	</c:choose>
+	      </div>
+	      <div class="mr-3">
+	      	<a href="${ctp}/MyPageMain.mem" class="text-secondary"><img src="${ctp}/images/topMenu/mycgv.png" style="width:26px; height:26px;"><br/>MY CGV</a>
+	      </div>
+       	<c:if test="${empty sMid }">
+        	<div class="mr-3">
+          	<a href="${ctp}/SignUpPage.mem" class="text-secondary"><img src="${ctp}/images/topMenu/register.png" style="width:26px; height:26px;"><br/>회원가입</a>
+        	</div>
+       	</c:if>
+       	<c:if test="${sLevel == 100}">
+       		<div class="mr-3">
+	          <a href="${ctp}/Join.mem" class="text-secondary"><img src="${ctp}/images/topMenu/register.png" style="width:26px; height:26px;"><br/>관리자 페이지</a>
+       		</div>
+       	</c:if>
+        <c:if test="${!empty sMid }">
+        	<div>
+            ${sNickName}님 <br/>로그인중입니다.
+        	</div>
+        </c:if>
         </div>
     </div>
 </div>

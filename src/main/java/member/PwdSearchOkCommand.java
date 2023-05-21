@@ -6,23 +6,23 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class SignUpIdChkCommand implements MemberInterface {
+public class PwdSearchOkCommand implements MemberInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String mid = request.getParameter("mid") == null ? "" : request.getParameter("mid");
+		String email = request.getParameter("email") == null ? "" : request.getParameter("email");
 		
 		MemberDAO dao = new MemberDAO();
 		
 		MemberVO vo = dao.getMemberMidChk(mid);
-
+		
 		if(vo == null) {
-			request.setAttribute("res", 1);	// 사용 가능한 아이디.
+			response.getWriter().write("0");
 		}
-		else {
-			request.setAttribute("res", 0);	// 이미 사용중인 아이디.
+		else if(vo.getEmail().equals(email)) {
+			response.getWriter().write("1");
 		}
-		request.setAttribute("mid", mid);
 
 	}
 

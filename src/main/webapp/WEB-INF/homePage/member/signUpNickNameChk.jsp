@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>title</title>
+	<title>닉네임중복체크페이지</title>
 	<jsp:include page="/include/bs4.jsp"/>
 	<script>
 	'use strict';

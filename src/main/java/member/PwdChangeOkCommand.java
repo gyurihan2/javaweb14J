@@ -6,24 +6,28 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class SignUpIdChkCommand implements MemberInterface {
+import conn.SecurityUtil;
+
+public class PwdChangeOkCommand implements MemberInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String mid = request.getParameter("mid") == null ? "" : request.getParameter("mid");
+		String chgPwd = request.getParameter("chgPwd") == null ? "" : request.getParameter("chgPwd");
 		
 		MemberDAO dao = new MemberDAO();
-		
 		MemberVO vo = dao.getMemberMidChk(mid);
-
-		if(vo == null) {
-			request.setAttribute("res", 1);	// 사용 가능한 아이디.
+		
+		if(vo == null) return;
+		
+		SecurityUtil security = new SecurityUtil();
+		chgPwd = security.encryptSHA256(vo.getSalt()+chgPwd);
+		
+		String res = dao.setPwdChange(mid,chgPwd);
+		
+		if(res.equals("1")) {
+			response.getWriter().write("1");
 		}
-		else {
-			request.setAttribute("res", 0);	// 이미 사용중인 아이디.
-		}
-		request.setAttribute("mid", mid);
-
 	}
 
 }

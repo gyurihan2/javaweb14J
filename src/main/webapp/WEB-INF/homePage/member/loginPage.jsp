@@ -6,12 +6,14 @@
 	
 	/* 아이디 기억 / 아이디 쿠키값 저장*/
 	Cookie[] cookies = request.getCookies();
-	for(int i=0; i<cookies.length; i++){
-		if(cookies[i].getName().equals("cSaveMid")){
-			pageContext.setAttribute("cSaveMid", cookies[i].getValue());
-		}
-		else if(cookies[i].getName().equals("cMid")){
-			pageContext.setAttribute("cMid", cookies[i].getValue());
+	if(cookies != null){
+		for(int i=0; i<cookies.length; i++){
+			if(cookies[i].getName().equals("cIdSave")){
+				pageContext.setAttribute("cIdSave", cookies[i].getValue());
+			}
+			else if(cookies[i].getName().equals("cMid")){
+				pageContext.setAttribute("cMid", cookies[i].getValue());
+			}
 		}
 	}
 %>
@@ -21,7 +23,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>title</title>
+	<title>로그인페이지</title>
 	<jsp:include page="/include/bs4.jsp"/>
 </head>
 <body>
@@ -33,7 +35,7 @@
 		  <h2 class="text-center">회원 로그인</h2>
 		  <p class="text-center">(회원 아이디와 비밀번호를 입력해 주세요)</p>
 		  
-		  <form name="myform" method="get" action="${ctp}/MemberLoginOk.mem" class="was-validated">
+		  <form name="myform" method="get" action="${ctp}/LoginOk.mem" class="was-validated">
 		    <div class="form-group">
 		      <label for="mid">회원 아이디</label>
 		      <input type="text" class="form-control" name="mid" id="mid" value="${cMid}" placeholder="Enter ID" required autofocus />
@@ -49,10 +51,10 @@
 		    	<button type="button" onclick="location.href='${ctp}/SignUpPage.mem';" class="btn btn-success">회원가입</button>
 		    </div>
 		    <div class="row text-center" style="font-size:12px">
-		      <span class="col"><input type="checkbox" name="idSave" id="idSave"/>아이디 저장</span>
+		      <span class="col"><input type="checkbox" name="idSave" id="idSave" ${cIdSave=="on" ? "checked":""}/>아이디 저장</span>
 		      <span class="col">
-		        [<a href="${ctp}/MemberMidSearch.mem" onclick="window.open(this.href,'nWin','width=580px,height=450px'); return false;">아이디찾기</a>] /
-		        [<a href="#">비밀번호찾기</a>]
+		        [<a href="${ctp}/IdSearchPage.mem" onclick="window.open(this.href,'nWin','width=580px,height=450px'); return false;">아이디찾기</a>] /
+		        [<a href="${ctp}/PwdSearchPage.mem" onclick="window.open(this.href,'nWin','width=580px,height=450px'); return false;">비밀번호찾기</a>]
 		      </span>
 		    </div>
 		  </form>

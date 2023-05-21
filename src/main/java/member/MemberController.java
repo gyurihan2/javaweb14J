@@ -40,6 +40,56 @@ public class MemberController extends HttpServlet{
 			command.execute(request, response);
 			viewPage += "/signUpNickNameChk.jsp";
 		}
+		// 회원가입 처리
+		else if(com.equals("/MemberJoinOk")) {
+			command = new MemberJoinOkCommand();
+			command.execute(request, response);
+			viewPage = "/include/message.jsp";
+		}
+		// 로그인 처리
+		else if(com.equals("/LoginOk")) {
+			command = new LoginOkCommand();
+			command.execute(request, response);
+			viewPage = "/include/message.jsp";
+		}
+		// 아이디 찾기 페이지
+		else if(com.equals("/IdSearchPage")) {
+			viewPage += "/idSearchPage.jsp";
+		}
+		// 아이디 찾기 처리
+		else if(com.equals("/IdSearchOk")) {
+			command = new IdSearchOkCommand();
+			command.execute(request, response);
+			viewPage += "/idSearchPage.jsp?sw=1";
+		}
+		// 비밀번호 찾기 페이지
+		else if(com.equals("/PwdSearchPage")) {
+			viewPage += "/pwdSearchPage.jsp";
+		}
+		// 비밀번호 찾기 처리(aJax)
+		else if(com.equals("/PwdSearchOk")) {
+			command = new PwdSearchOkCommand();
+			command.execute(request, response);
+			return;
+		}
+		// 비밀번호 변경 처리(aJax)
+		else if(com.equals("/PwdChangeOk")) {
+			command = new PwdChangeOkCommand();
+			command.execute(request, response);
+			return;
+		}
+		// 로그아웃 처리
+		else if(com.equals("/LoginOutOk")) {
+			command = new LoginOutOkCommand();
+			command.execute(request, response);
+			viewPage = "/include/message.jsp";
+		}
+		// myPage 페이지
+		else if(com.equals("/MyPageMain")) {
+			command = new MyPageMainCommand();
+			command.execute(request, response);
+			viewPage += "/myPageMain.jsp";
+		}
 	
 		
 		
