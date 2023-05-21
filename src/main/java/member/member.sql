@@ -25,3 +25,5 @@ create table member (
 
 drop table member;
 desc member;
+
+select * from member;

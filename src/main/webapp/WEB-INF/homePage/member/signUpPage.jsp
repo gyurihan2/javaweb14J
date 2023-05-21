@@ -38,9 +38,9 @@
     	let phone = phone1+"-"+phone2+"-"+phone3;
     	
     	// 유효성 검사 필요
-    	let postcode1 = myform.postcode.value;
-			let roadAddress1 = myform.roadAddress.value;
-			let detailAddress1 = myform.detailAddress.value;
+    	let postcode1 = myform.postcode.value == "" ? " " : myform.postcode.value;
+			let roadAddress1 = myform.roadAddress.value == "" ? " " : myform.roadAddress.value;
+			let detailAddress1 = myform.detailAddress.value == "" ? " " : myform.detailAddress.value;
 			let extraAddress1 = myform.extraAddress.value == "" ? " " : myform.extraAddress.value;
 			let address1 = postcode1 + "/" + roadAddress1 + "/"+detailAddress1+"/"+extraAddress1;
     	
@@ -270,16 +270,16 @@
 	      <label for="address">주소</label>
 	      <input type="hidden" name="address" id="address">
 	      <div class="input-group mb-1">
-	        <input type="text" name="postcode" id="sample6_postcode" placeholder="우편번호" class="form-control">
+	        <input type="text" name="postcode" id="sample6_postcode" placeholder="우편번호" class="form-control" readonly>
 	        <div class="input-group-append">
 	          <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" class="btn btn-secondary">
 	        </div>
 	      </div>
-	      <input type="text" name="roadAddress" id="sample6_address" size="50" placeholder="주소" class="form-control mb-1">
+	      <input type="text" name="roadAddress" id="sample6_address" size="50" placeholder="주소" class="form-control mb-1" readonly>
 	      <div class="input-group mb-1">
 	        <input type="text" name="detailAddress" id="sample6_detailAddress" placeholder="상세주소" class="form-control"> &nbsp;&nbsp;
 	        <div class="input-group-append">
-	          <input type="text" name="extraAddress" id="sample6_extraAddress" placeholder="참고항목" class="form-control">
+	          <input type="text" name="extraAddress" id="sample6_extraAddress" placeholder="참고항목" class="form-control" readonly>
 	        </div>
 	      </div>
 	    </div>

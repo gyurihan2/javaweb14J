@@ -90,6 +90,12 @@ public class MemberController extends HttpServlet{
 			command.execute(request, response);
 			viewPage += "/myPageMain.jsp";
 		}
+		// 회원정보 수정 페이지(aJax)
+		else if(com.equals("/MemberModifyOk")) {
+			command = new MemberModifyOkCommand();
+			command.execute(request, response);
+			return;
+		}
 	
 		
 		
