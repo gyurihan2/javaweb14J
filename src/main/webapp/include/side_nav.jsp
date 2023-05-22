@@ -95,7 +95,7 @@ $(function(){
   <div class="dropdown-container">
     <a href="${ctp}/TheaterMgmtPage.ad">상영관 관리</a>
     <a href="#">영화 일정 관리</a>
-    <a href="#">영화 관리</a>
+    <a href="${ctp}/MovieMgmtPage.ad">영화 관리</a>
   </div>
   <a href="#clients"><i class="fa fa-fw fa-user"></i> Clients</a>
   <button class="dropdown-btn">

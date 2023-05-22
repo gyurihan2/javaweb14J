@@ -186,7 +186,6 @@
 <div class="content">
 	<div class="container">
 		<h3>상영관 관리</h3>
-		<p></p>
 		<input type="button" value="상영관 추가" class="btn btn-info btn-sm float-right" data-toggle="modal" data-target="#theaterCreateModal"/>
 		<c:if test="${!empty vos}">
 			<table class="table table-hover mt-2 text-center" id="testTable">
@@ -219,52 +218,7 @@
 	</div>
 </div>
 <p><br/></p>
-<!-- 상영관 신규 생성 Modal -->
-<div class="modal fade" id="theaterCreateModal">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-			<!-- Modal Header -->
-				<div class="modal-header">
-					<h4 class="modal-title">상영관 신규 생성</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-	      <!-- Modal body -->
-				<form method="post" action="" name="myform" id="myform">
-	      	<div class="modal-body row justify-content-center">
-	      		<div class="input-group mb-3">
-		    			<div class="input-group-prepend">
-		      			<span class="input-group-text">상영관이름</span>
-		    			</div>
-	    				<input type="text" class="form-control" name="name" id="name" placeholder="상영관이름을 입력하세요">
-	  				</div>
-	      		<div class="input-group mb-3">
-	    				<div class="input-group-prepend">
-	      				<span class="input-group-text">상영관 테마</span>
-	    				</div>
-					  <select name="thema" id="thema" class="custom-select">
-					    <option value="" selected>상영관 테마를 선택하세요</option>
-					    <option value="Nomal">일반</option>
-					    <option value="Imax">Imax</option>
-					    <option value="4DX">4DX</option>
-					    <option value="ScreenX">ScreenX</option>
-					  </select>
-			 		</div>
-			 		<div class="input-group mb-3">
-	    			<div class="input-group-prepend">
-	      			<span class="input-group-text">좌석수</span>
-	    			</div>
-	    			<input type="number" class="form-control" name="seat" id="seat" step="10" min="0">
-	  			</div>
-				 	<input type="button" class="form-control btn btn-info text-center" value="생성하기" onclick="theaterCreate()" style="width:80%	">
-			 	</div>
-			</form>
-     <!-- Modal footer --> 
-			<div class="modal-footer">
-				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
-</div>
+ 
 <!-- 상영관 상세 보기 Modal -->
 <div class="modal fade" id="theaterDetailModal">
   <div class="modal-dialog modal-dialog-centered">

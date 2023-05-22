@@ -29,6 +29,7 @@ public class AdminController extends HttpServlet{
 		// 관리자 Level = 100
 		int sLevel = session.getAttribute("sLevel") == null ? 0: (int)session.getAttribute("sLevel");
 		
+		//  보안 처리
 		if(sLevel != 100) {
 			request.setAttribute("url", request.getContextPath());
 			request.setAttribute("msg", "관리자 전용 페이지 입니다.");
@@ -38,6 +39,9 @@ public class AdminController extends HttpServlet{
 		else if(com.equals("/MainPage")) {
 			viewPage += "/mainPage.jsp";
 		}
+		//
+		// 상영관 관리
+		//
 		// 상영관 관리 페이지
 		else if(com.equals("/TheaterMgmtPage")) {
 			command= new TheaterMgmtPageCommand();
@@ -62,7 +66,12 @@ public class AdminController extends HttpServlet{
 			command.execute(request, response);
 			return;
 		}
-		
+		//
+		// 영화 관리
+		//
+		else if(com.equals("/MovieMgmtPage")) {
+			viewPage += "/movieList/movieMgmtPage.jsp";
+		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 	}
