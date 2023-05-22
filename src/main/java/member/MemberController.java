@@ -97,8 +97,6 @@ public class MemberController extends HttpServlet{
 			return;
 		}
 	
-		
-		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 	}
