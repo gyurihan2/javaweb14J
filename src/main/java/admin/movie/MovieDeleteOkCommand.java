@@ -19,7 +19,7 @@ public class MovieDeleteOkCommand implements AdminInterface {
 		
 		String res = dao.setMovieDeleteOk(idx);
 		
-		
+		response.getWriter().write(res);
 	}
 
 }

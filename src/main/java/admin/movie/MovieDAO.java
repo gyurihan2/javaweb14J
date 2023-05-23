@@ -121,7 +121,7 @@ public class MovieDAO {
 		String res ="0";
 		
 		try {
-			sql = "delete form movie where idx = ?";
+			sql = "delete from movie where idx = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, idx);
 			

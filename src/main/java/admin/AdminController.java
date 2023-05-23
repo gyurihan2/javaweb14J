@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import admin.movie.MovieDeleteOkCommand;
 import admin.movie.MovieInsertOkCommand;
 import admin.movie.MovieMgmtPageCommand;
+import admin.movie.MovieRangeDeleteOkCommand;
 import admin.theater.TheaterCreateOkCommand;
 import admin.theater.TheaterDeleteOkCommand;
 import admin.theater.TheaterMgmtPageCommand;
@@ -87,6 +88,12 @@ public class AdminController extends HttpServlet{
 		// 영화 삭제 (ajax)
 		else if(com.equals("/MovieDeleteOk")) {
 			command= new MovieDeleteOkCommand();
+			command.execute(request, response);
+			return;
+		}
+		// 영화 일괄 삭제 (ajax)
+		else if(com.equals("/MovieRangeDeleteOk")) {
+			command= new MovieRangeDeleteOkCommand();
 			command.execute(request, response);
 			return;
 		}

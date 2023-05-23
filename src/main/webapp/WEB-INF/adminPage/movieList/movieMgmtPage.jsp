@@ -10,9 +10,7 @@
 	<jsp:include page="/include/bs4.jsp" />
 	<script>
 		'use strict';
-		
-		
-		
+		//영화 신규 생성
 		function submitOk(){
 			let title = $("#title").val();
 			let img = $("#posterImg").val();
@@ -36,7 +34,6 @@
 			myform.submit();
 		}
 		
-		
 		// 그림 미리보기
 		 function posterAppend(e,index){
     	//그림파일 체크
@@ -58,8 +55,7 @@
   		document.querySelector(".imgDemo").appendChild(img);
   		
     }
-    	
-    
+		
 		// 동적폼(파일 업로드)
 		let cnt = 1;
 		function posterAdd(){
@@ -109,6 +105,37 @@
 	       }
 	    });
 	  }
+		 // 일괄삭제
+		function rangeDelete(){
+			let items =[];
+			
+			$("input:checkbox[name=rangeChk]").each(function(index,item){
+			  if(item.checked){
+			      let idx = item.id.split("/")[1];
+			      items.push({idx:idx});
+			  }
+			});
+			// 배열을 보내기 위한 JSON 처리
+			let jsonItems= JSON.stringify(items);
+			console.log(items);
+			console.log(jsonItems);
+			$.ajax({
+	      type:"post",
+	      url:"${ctp}/MovieRangeDeleteOk.ad",
+	      data:{movieIdxArr:jsonItems},
+	      success: function(res){
+	          if(res == "1"){
+	              alert("일괄삭제 완료");
+	              location.reload();
+	          }
+	          else alert("일괄삭제 실패~~");
+	      },
+	      error:function(){
+	          alert("전송실패");
+	      }
+	    });
+	  	      
+		}
 		
 		jQuery(function(){
 			// 이동 페이지가 총 페이지보다 클 경우 마지막 페이지로
@@ -129,7 +156,7 @@
 		<table class="table table-boderless">
 		<tr>
 			<td>
-				<input type="button" value="일괄 삭제" class="btn btn-danger btn-sm float-right border" data-toggle="modal" data-target="#movieInsertModal"/>
+				<input type="button" value="일괄 삭제" class="btn btn-danger btn-sm float-right border" onclick="rangeDelete()"/>
 				<input type="button" value="영화 추가" class="btn btn-success btn-sm float-right border" data-toggle="modal" data-target="#movieInsertModal"/>
 	    	<select name="pageSize" id="pageSize" onchange="pageCheck()">
 		    		<option <c:if test="${pageSize==5}">selected</c:if>>5</option>
@@ -153,7 +180,7 @@
 			</tr>
 			<c:forEach var="vo" items="${vos}" varStatus="st">
 				<tr>
-					<td><input type="checkbox" name="DeleteAll" id="vo/${vo.idx}"/> </td>
+					<td><input type="checkbox" name="rangeChk" id="rangeChk/${vo.idx}" /> </td>
 					<td>
 						${vo.idx}
 					</td>
