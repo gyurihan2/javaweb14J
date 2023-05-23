@@ -21,22 +21,24 @@ desc theater;
 
 /* 영화 테이블(영화 목록)*/
 create table movie(
-	idx int not null primary key,
-	posterImg varchar(30) not null,
+	idx varchar(15) not null primary key,
+	mainImg varchar(30) not null,
 	images varchar(100),
+	imgFName varchar(100),
 	title varchar(100) not null,
 	genre varchar(50) not null,
-	playTime time not null,
+	playTime int not null,
 	openDate date not null,
+	nation varchar(10) not null,
 	director varchar(50) not null,
 	actor varchar(200) not null,
 	content text,
+	grade char(5) not null,
 	totalView int(10) default 0,
 	rating float default 0
 );
 
 drop table movie;
-
 
 desc movie;
 

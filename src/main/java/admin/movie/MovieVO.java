@@ -1,21 +1,20 @@
 package admin.movie;
 
 public class MovieVO {
-	private int idx, totalView;
+	private int totalView,playTime;
 	private float rating;
-	private String posterImg,images,title,genre,playTime,openDate,director, actor, content;
-	
-	public int getIdx() {
-		return idx;
-	}
-	public void setIdx(int idx) {
-		this.idx = idx;
-	}
+	private String idx, mainImg,images,imgFName,title,genre,openDate,grade,nation,director, actor, content;
 	public int getTotalView() {
 		return totalView;
 	}
 	public void setTotalView(int totalView) {
 		this.totalView = totalView;
+	}
+	public int getPlayTime() {
+		return playTime;
+	}
+	public void setPlayTime(int playTime) {
+		this.playTime = playTime;
 	}
 	public float getRating() {
 		return rating;
@@ -23,13 +22,30 @@ public class MovieVO {
 	public void setRating(float rating) {
 		this.rating = rating;
 	}
-	public String getPosterImg() {
-		return posterImg;
+	public String getIdx() {
+		return idx;
 	}
-	public void setPosterImg(String posterImg) {
-		this.posterImg = posterImg;
+	public void setIdx(String idx) {
+		this.idx = idx;
 	}
-	
+	public String getMainImg() {
+		return mainImg;
+	}
+	public void setMainImg(String mainImg) {
+		this.mainImg = mainImg;
+	}
+	public String getImages() {
+		return images;
+	}
+	public void setImages(String images) {
+		this.images = images;
+	}
+	public String getImgFName() {
+		return imgFName;
+	}
+	public void setImgFName(String imgFName) {
+		this.imgFName = imgFName;
+	}
 	public String getTitle() {
 		return title;
 	}
@@ -42,17 +58,23 @@ public class MovieVO {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	public String getPlayTime() {
-		return playTime;
-	}
-	public void setPlayTime(String playTime) {
-		this.playTime = playTime;
-	}
 	public String getOpenDate() {
 		return openDate;
 	}
 	public void setOpenDate(String openDate) {
 		this.openDate = openDate;
+	}
+	public String getGrade() {
+		return grade;
+	}
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+	public String getNation() {
+		return nation;
+	}
+	public void setNation(String nation) {
+		this.nation = nation;
 	}
 	public String getDirector() {
 		return director;
@@ -72,19 +94,11 @@ public class MovieVO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getImages() {
-		return images;
-	}
-	public void setImages(String images) {
-		this.images = images;
-	}
-	
 	@Override
 	public String toString() {
-		return "MovieVO [idx=" + idx + ", totalView=" + totalView + ", rating=" + rating + ", posterImg=" + posterImg
-				+ ", images=" + images + ", title=" + title + ", genre=" + genre + ", playTime=" + playTime + ", openDate="
-				+ openDate + ", director=" + director + ", actor=" + actor + ", content=" + content + "]";
+		return "MovieVO [totalView=" + totalView + ", playTime=" + playTime + ", rating=" + rating + ", idx=" + idx
+				+ ", mainImg=" + mainImg + ", images=" + images + ", imgFName=" + imgFName + ", title=" + title + ", genre="
+				+ genre + ", openDate=" + openDate + ", grade=" + grade + ", nation=" + nation + ", director=" + director
+				+ ", actor=" + actor + ", content=" + content + "]";
 	}
-	
-	
 }

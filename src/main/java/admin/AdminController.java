@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import admin.movie.MovieDeleteOkCommand;
+import admin.movie.MovieInsertOkCommand;
+import admin.movie.MovieMgmtPageCommand;
 import admin.theater.TheaterCreateOkCommand;
 import admin.theater.TheaterDeleteOkCommand;
 import admin.theater.TheaterMgmtPageCommand;
@@ -69,9 +72,28 @@ public class AdminController extends HttpServlet{
 		//
 		// 영화 관리
 		//
+		//영화 관리 메인 페이지
 		else if(com.equals("/MovieMgmtPage")) {
+			command= new MovieMgmtPageCommand();
+			command.execute(request, response);
 			viewPage += "/movieList/movieMgmtPage.jsp";
 		}
+		// 영화 추가
+		else if(com.equals("/MovieInsertOk")) {
+			command= new MovieInsertOkCommand();
+			command.execute(request, response);
+			viewPage = "/include/message.jsp";
+		}
+		// 영화 삭제 (ajax)
+		else if(com.equals("/MovieDeleteOk")) {
+			command= new MovieDeleteOkCommand();
+			command.execute(request, response);
+			return;
+		}
+		
+		
+		
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 	}
