@@ -42,11 +42,25 @@ drop table movie;
 
 desc movie;
 
+create table schedule(
+	idx int not null primary key auto_increment,
+	theaterIdx int not null,
+	movieIdx varchar(15) not null,
+	screenOrder int(5),
+	playDate date
+);
+
+select count(*) as cnt from movie where openDate < '2023-05-17';
+select openDate from movie;
+select * from movie  where openDate < '2023-05-17' order by openDate desc limit 0, 10;
+desc schedule;
+
+-- 차집합
+select * from theater where idx not in
+(select theaterIdx from schedule where playDate between '2023-05-26' and '2023-06-07' group by theaterIdx);
 
 
-
-
-
+select theaterIdx from schedule where playDate between '2023-05-26' and '2023-06-07' group by theaterIdx
 
 
 

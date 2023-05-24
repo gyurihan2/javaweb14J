@@ -136,6 +136,12 @@
 	    });
 	  	      
 		}
+		//영화 상세보기
+		function movieDetail(idx){
+			let url="http://192.168.50.87:9090${ctp}/MovieDetailPage.ad?idx="+idx;
+			window.open(url,'영화 상세보기','width=1000px,height=700px');
+		}
+		
 		
 		jQuery(function(){
 			// 이동 페이지가 총 페이지보다 클 경우 마지막 페이지로
@@ -180,7 +186,9 @@
 			</tr>
 			<c:forEach var="vo" items="${vos}" varStatus="st">
 				<tr>
-					<td><input type="checkbox" name="rangeChk" id="rangeChk/${vo.idx}" /> </td>
+					<td><input type="checkbox" name="rangeChk" id="rangeChk/${vo.idx}" /> 
+							<img src="${ctp}/images/movieChart/${vo.mainImg}" width="75px">
+					</td>
 					<td>
 						${vo.idx}
 					</td>
@@ -189,7 +197,7 @@
 					<td>${vo.grade}</td>
 					<td>${vo.openDate}</td>
 					<td>
-						<input type="button" value="수정" class="btn btn-info btn-sm" onclick=""/>
+						<input type="button" value="상세보기" class="btn btn-info btn-sm" onclick="movieDetail(${vo.idx})"/>
 						<input type="button" value="삭제" class="btn btn-warning btn-sm" onclick="movieDelete('${vo.idx}','${vo.title }')"/>
 					</td>
 				</tr>
@@ -253,7 +261,6 @@
 	    			</div>
 	    			<div id="fileBoxAppend" >
 		    			<input type="file" class="posterImg" name="posterImg" class="mb-2 form-control-file border" onchange="posterAppend(this,1)"/>
-	    			
 	    			</div>
 	    		<div><input type="button" class="btn-sm btn-info" value="추가" onclick="posterAdd()"></div>
 	  			</div>
@@ -342,7 +349,12 @@
 					 	<div class="input-group-prepend">
 	    				<span class="input-group-text">관람등급</span>
 	  				</div>
-					 	<input type="number" class="form-control" name="grade" id="grade">
+					 	<select name="grade" class="custom-select">
+					    <option value="All" selected>All</option>
+					    <option value="12">12</option>
+					    <option value="15">15</option>
+					    <option value="19">19</option>
+					  </select>
 					</div>
 					<div class="input-group mb-3">
 	  				<div class="input-group-prepend">

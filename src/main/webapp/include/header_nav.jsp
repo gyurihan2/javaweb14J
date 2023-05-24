@@ -97,7 +97,7 @@
        	</c:if>
        	<c:if test="${sLevel == 100}">
        		<div class="mr-3">
-	          <a href="${ctp}/MainPage.ad" class="text-secondary"><img src="${ctp}/images/topMenu/register.png" style="width:26px; height:26px;"><br/>관리자 페이지</a>
+	          <a href="http://192.168.50.87:9090${ctp}/MainPage.ad" class="text-secondary"><img src="${ctp}/images/topMenu/register.png" style="width:26px; height:26px;"><br/>관리자 페이지</a>
        		</div>
        	</c:if>
         <c:if test="${!empty sMid }">

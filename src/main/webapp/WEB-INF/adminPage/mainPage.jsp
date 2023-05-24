@@ -9,6 +9,9 @@
 	
 	<title>title</title>
 	<jsp:include page="/include/bs4.jsp"/>
+	<script>
+	
+	</script>
 </head>
 <body>
 <%-- <jsp:include page="/include/header.jsp"/> --%>

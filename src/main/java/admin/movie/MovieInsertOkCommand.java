@@ -28,14 +28,14 @@ public class MovieInsertOkCommand implements AdminInterface {
 		String originalFileName="";
 		String filesystemName="";
 		String file="";
-		String MainImg="noImage.jsp";
+		String mainImg="noImage.jsp";
 		
 		// 파일 업로드 경로 확인
 		while(fileNames.hasMoreElements()) {
 			file = (String)fileNames.nextElement();
 			originalFileName += multipartRequest.getOriginalFileName(file)+"/";
 			filesystemName += multipartRequest.getFilesystemName(file)+"/";
-			MainImg=multipartRequest.getFilesystemName(file);
+			mainImg=multipartRequest.getFilesystemName(file);
 		}
 		originalFileName = originalFileName.substring(0,originalFileName.length()-1);
 		filesystemName = filesystemName.substring(0,filesystemName.length()-1);
@@ -72,7 +72,7 @@ public class MovieInsertOkCommand implements AdminInterface {
 		vo.setGrade(grade);
 		vo.setImages(originalFileName);
 		vo.setImgFName(filesystemName);
-		vo.setMainImg(MainImg);
+		vo.setMainImg(mainImg);
 		
 		MovieDAO dao = new MovieDAO();
 		
