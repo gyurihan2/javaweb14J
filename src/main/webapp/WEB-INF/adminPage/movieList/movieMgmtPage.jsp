@@ -197,7 +197,7 @@
 					<td>${vo.grade}</td>
 					<td>${vo.openDate}</td>
 					<td>
-						<input type="button" value="상세보기" class="btn btn-info btn-sm" onclick="movieDetail(${vo.idx})"/>
+						<input type="button" value="상세보기" class="btn btn-info btn-sm" onclick="movieDetail('${vo.idx}')"/>
 						<input type="button" value="삭제" class="btn btn-warning btn-sm" onclick="movieDelete('${vo.idx}','${vo.title }')"/>
 					</td>
 				</tr>

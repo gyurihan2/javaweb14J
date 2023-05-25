@@ -17,6 +17,8 @@ import admin.movie.MovieListPageCommand;
 import admin.movie.MovieMgmtPageCommand;
 import admin.movie.MovieRangeDeleteOkCommand;
 import admin.movie.MovieUpdateOkCommand;
+import admin.schedule.ScheduleDetailPageCommand;
+import admin.schedule.ScheduleInsertOkCommand;
 import admin.schedule.ScheduleMgmtPageCommand;
 import admin.schedule.ScheduleTheaterCommand;
 import admin.theater.TheaterCreateOkCommand;
@@ -136,6 +138,18 @@ public class AdminController extends HttpServlet{
 			command= new ScheduleTheaterCommand();
 			command.execute(request, response);
 			viewPage += "/schedule/scheduleTheaterPage.jsp";
+		}
+		// 영화일정 추가
+		else if(com.equals("/ScheduleInsertOk")) {
+			command= new ScheduleInsertOkCommand();
+			command.execute(request, response);
+			viewPage = "/include/message.jsp";
+		}
+		// 영화일정 상세 확인
+		else if(com.equals("/ScheduleDetailPage")) {
+			command= new ScheduleDetailPageCommand();
+			command.execute(request, response);
+			viewPage += "/schedule/scheduleDetailPage.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

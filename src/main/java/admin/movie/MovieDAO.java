@@ -98,7 +98,7 @@ public class MovieDAO {
 		ArrayList<MovieVO> vos=null;
 		
 		try {
-			sql="select * from movie where openDate < ? order by openDate desc limit ?, ?";
+			sql="select * from movie where openDate <= ? order by openDate desc limit ?, ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, startDate);
 			pstmt.setInt(2, start);
@@ -266,6 +266,51 @@ public class MovieDAO {
 		}
 		
 		return res;
+	}
+
+	// MainHomepage에 표시할 영화 목록
+	public ArrayList<MovieVO> getMainPageMovie(String today) {
+		ArrayList<MovieVO> vos= null;
+		
+		try {
+			sql = "select * from movie as a ,"
+					+ "(select movieIdx from schedule where  playDate = ? group by movieidx) as b "
+					+ "where a.idx = b.movieIdx";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, today);
+			
+			rs = pstmt.executeQuery();
+			vos= new ArrayList<>();
+			while(rs.next()) {
+				vo = new MovieVO();
+				
+				vo.setIdx(rs.getString("idx"));
+				vo.setMainImg(rs.getString("mainImg"));
+				vo.setImages(rs.getString("images"));
+				vo.setImgFName(rs.getString("imgFName"));
+				vo.setTitle(rs.getString("title"));
+				vo.setGenre(rs.getString("genre"));
+				vo.setPlayTime(rs.getInt("playTime"));
+				vo.setOpenDate(rs.getString("openDate"));
+				vo.setNation(rs.getString("nation"));
+				vo.setDirector(rs.getString("director"));
+				vo.setActor(rs.getString("actor"));
+				vo.setContent(rs.getString("content"));
+				vo.setGrade(rs.getString("grade"));
+				vo.setTotalView(rs.getInt("totalView"));
+				vo.setRating(rs.getFloat("rating"));
+				
+				vos.add(vo);
+			}
+			
+		}catch (SQLException e) {
+			System.out.println("admin.movie.MovieDAO.getMainPageMovie SQL 에러\n" + e.getMessage());
+		}finally {
+			getConn.pstmtClose();
+		}
+		 
+		return vos;
 	}
 
 }

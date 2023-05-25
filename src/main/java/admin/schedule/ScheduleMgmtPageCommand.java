@@ -1,6 +1,7 @@
 package admin.schedule;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.servlet.ServletException;
@@ -106,11 +107,11 @@ public class ScheduleMgmtPageCommand implements AdminInterface {
 			ym = yy+"+"+(mm+1);
 		}
 		
-		//ScheduleDAO dao = new ScheduleDAO();
+		ScheduleDAO dao = new ScheduleDAO();
 		
-		//ArrayList<ScheduleVO> vos =  dao.getSchedule(sMid,ym,0);
+		ArrayList<CalendarVO> vos =  dao.getSchedule(ym);
 		
-		//request.setAttribute("vos", vos);
+		request.setAttribute("vos", vos);
 	}
 
 }

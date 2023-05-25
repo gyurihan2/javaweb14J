@@ -15,30 +15,36 @@ public class MemberController extends HttpServlet{
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		MemberInterface command = null;
-		String viewPage = "/WEB-INF/homePage/member";
+		String viewPage = "/WEB-INF/homePage";
 		
 		String uri = request.getRequestURI();
 		String com = uri.substring(uri.lastIndexOf("/"),uri.lastIndexOf("."));
 		
+		// 메인 홈페이지
+		if(com.equals("/MainHomepage")) {
+			command = new MainHomepageCommand();
+			command.execute(request, response);
+			viewPage +="/cgvHomepage.jsp";
+		}
 		// 로그인 페이지
-		if(com.equals("/LoginPage")) {
-			viewPage += "/loginPage.jsp";
+		else if(com.equals("/LoginPage")) {
+			viewPage += "/member/loginPage.jsp";
 		}
 		// 회원 가입 페이지
 		else if(com.equals("/SignUpPage")) {
-			viewPage += "/signUpPage.jsp";
+			viewPage += "/member/signUpPage.jsp";
 		}
 		// 아이디 중복 체크
 		else if(com.equals("/SignUpIdChk")) {
 			command = new SignUpIdChkCommand();
 			command.execute(request, response);
-			viewPage += "/signUpIdChk.jsp";
+			viewPage += "/member/signUpIdChk.jsp";
 		}
 		// 닉네임 중복 체크
 		else if(com.equals("/SignUpNickNameChk")) {
 			command = new SignUpNickNameChkCommand();
 			command.execute(request, response);
-			viewPage += "/signUpNickNameChk.jsp";
+			viewPage += "/member/signUpNickNameChk.jsp";
 		}
 		// 회원가입 처리
 		else if(com.equals("/MemberJoinOk")) {
@@ -54,17 +60,17 @@ public class MemberController extends HttpServlet{
 		}
 		// 아이디 찾기 페이지
 		else if(com.equals("/IdSearchPage")) {
-			viewPage += "/idSearchPage.jsp";
+			viewPage += "/member/idSearchPage.jsp";
 		}
 		// 아이디 찾기 처리
 		else if(com.equals("/IdSearchOk")) {
 			command = new IdSearchOkCommand();
 			command.execute(request, response);
-			viewPage += "/idSearchPage.jsp?sw=1";
+			viewPage += "/member/idSearchPage.jsp?sw=1";
 		}
 		// 비밀번호 찾기 페이지
 		else if(com.equals("/PwdSearchPage")) {
-			viewPage += "/pwdSearchPage.jsp";
+			viewPage += "/member/pwdSearchPage.jsp";
 		}
 		// 비밀번호 찾기 처리(aJax)
 		else if(com.equals("/PwdSearchOk")) {
@@ -88,7 +94,7 @@ public class MemberController extends HttpServlet{
 		else if(com.equals("/MyPageMain")) {
 			command = new MyPageMainCommand();
 			command.execute(request, response);
-			viewPage += "/myPageMain.jsp";
+			viewPage += "/member/myPageMain.jsp";
 		}
 		// 회원정보 수정 페이지(aJax)
 		else if(com.equals("/MemberModifyOk")) {

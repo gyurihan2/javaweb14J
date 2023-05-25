@@ -47,13 +47,35 @@ create table schedule(
 	theaterIdx int not null,
 	movieIdx varchar(15) not null,
 	screenOrder int(5),
-	playDate date
+	playDate date,
+	startTime time
 );
 
 select count(*) as cnt from movie where openDate < '2023-05-17';
 select openDate from movie;
 select * from movie  where openDate < '2023-05-17' order by openDate desc limit 0, 10;
 desc schedule;
+
+select name from theater as a, (select theaterIdx from schedule where playDate like '2023-05%' group by theaterIdx) as b where a.idx = b.theaterIdx;
+
+-- 영화관리 페이지(admin) 달력에 표시할 해당 일에 운영중인 상영관 표시
+select theaterIdx,playDate from schedule where playDate like '2023-05%' group by theaterIdx,playDate order by playDate;
+select name,b.playDate from theater as a, (select theaterIdx,playDate from schedule where playDate like '2023-05%' group by theaterIdx,playDate) as b where a.idx = b.theaterIdx order by b.playDate,a.name;
+
+select name,b.playDate,b.movieIdx from theater as a, (select theaterIdx,playDate,movieIdx from schedule where playDate like '2023-05%' group by theaterIdx,playDate) as b where a.idx = b.theaterIdx order by b.playDate,a.name;
+
+-- 스케줄 일자 클릭시 해당 일의 상영중인(All) 리스트 확인
+select a.idx, a.name, c.title, c.mainImg, c.totalView, c.rating, c.playTime from theater as a, 
+(select * from schedule as c where playDate = '2023-06-01' group by theaterIdx) as b,
+(select * from movie) as c
+where a.idx = b.theaterIdx and b.movieIdx = c.idx order by b.playDate,a.name;
+
+select title from movie;
+
+-- 메인페이지에 표시할 영화 목록(오늘 날짜에 일정이 등록된 영화 목록)
+select * from schedule where playDate ='2023-05-25'
+select movieIdx from schedule where playDate ='2023-05-25' group by movieidx;
+select * from movie as a ,(select movieIdx from schedule where playDate ='2023-05-30' group by movieidx) as b where a.idx = b.movieIdx;
 
 -- 차집합
 select * from theater where idx not in

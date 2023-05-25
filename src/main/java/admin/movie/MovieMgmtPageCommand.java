@@ -27,7 +27,6 @@ public class MovieMgmtPageCommand implements AdminInterface {
 		int blockSize=5;
 		int curBlock = (pag-1) / blockSize;
 		int lastBlock = (totPage-1)/blockSize;
-		
 		ArrayList<MovieVO> vos = new ArrayList<>();
 		
 		vos = dao.getMovieList(startIndexNo,pageSize);
