@@ -10,6 +10,9 @@
 	<title>title</title>
 	<jsp:include page="/include/bs4.jsp"/>
 	<style>
+	a{
+  	text-decoration: none;
+	}
     #td1,#td8,#td15,#td22,#td29,#td36 {color:red}
     #td7,#td14,#td21,#td28,#td35 {color:blue}
     .today {
@@ -109,6 +112,11 @@
 			$("#img"+cnt).remove();
 			
 		}
+		// 해당일의 버튼 클릭시 상영관 정보 및 상영중인 영화 및 일정 확인
+		function scheduleTheaterChk(theaterName,playDate){
+			let url="http://192.168.50.87:9090${ctp}/ScheduleTheaterChkPage.ad?theaterName="+theaterName+"&playDate="+playDate;
+	  	window.open(url,'상영관 일정 확인','width=1000px,height=700px');
+		}
   	
 		$(function(){
 			// 상영 일 날짜 보다 이전 날짜 선택 X
@@ -122,6 +130,7 @@
 <body>
 <jsp:include page="/include/side_nav.jsp"/>
 <p><br/></p>
+
 <div class="content">
 	<div class="continer">
 		<h3>영화 상영 일정표</h3>
@@ -160,12 +169,21 @@
       	  <td id="td${gap}" ${todaySw==1 ? 'class=today' : ''} style="text-align:left">
       	  <c:set var="ymd" value="${yy}-${mm+1}-${st.count}"/>
       	  <a href="${ctp}/ScheduleDetailPage.ad?ymd=${ymd}">${st.count}</a><br/>
-      	  	<!-- 해당 날짜에 일정이 있다면 part를 출력하게한다. -->
+      	  	<!-- 해당 날짜에 일정이 있다면 상영관을 출력하게한다. -->
       	  	<c:forEach var ="vo" items="${vos}">
       	  		<c:if test="${fn:substring(vo.playDate,8,10) == st.count}">
+      	  			<!-- 구분자 '/' 기준으로 분리 -->
       	  			<c:set var="name" value="${fn:split(vo.theaterName,'/')}"/>
       	  				<c:forEach var="temp" items="${name}">
-      	  					<span class="badge bg-success"><font color="#212121">${temp}</font></span>
+      	  					<c:if test="${toDay > st.count }">
+	      	  					<span style="background-color:#9D968F;" class="badge btn" onclick="scheduleTheaterChk('${temp}','${vo.playDate}')"><font color="#212121">${temp}</font></span>
+      	  					</c:if>
+      	  					<c:if test="${toDay == st.count }">
+	      	  					<span class="badge bg-success btn" onclick="scheduleTheaterChk('${temp}','${vo.playDate}')"><font color="#212121">${temp}</font></span>
+      	  					</c:if>
+      	  					<c:if test="${toDay < st.count }">
+	      	  					<span style="background-color:#7D9FDB;" class="badge btn" onclick="scheduleTheaterChk('${temp}','${vo.playDate}')"><font color="#212121">${temp}</font></span>
+      	  					</c:if>
       	  				</c:forEach>
       	  		</c:if>
       	  	</c:forEach>

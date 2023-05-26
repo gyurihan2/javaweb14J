@@ -3,9 +3,8 @@ package admin.schedule;
 // 혼합
 public class ScheduleVO {
 	private int idx,theaterIdx,screenOrder,moviePlayTime,totalView;
-	private String movieIdx,playDate,startTime,movieTitle,theatherName,movieMainImg;
+	private String movieIdx,playDate,startTime,movieTitle,theatherName,movieMainImg,ymdTime;
 	private float movieRating;
-	
 	public int getIdx() {
 		return idx;
 	}
@@ -72,6 +71,12 @@ public class ScheduleVO {
 	public void setMovieMainImg(String movieMainImg) {
 		this.movieMainImg = movieMainImg;
 	}
+	public String getYmdTime() {
+		return ymdTime;
+	}
+	public void setYmdTime(String ymdTime) {
+		this.ymdTime = ymdTime;
+	}
 	public float getMovieRating() {
 		return movieRating;
 	}
@@ -83,9 +88,8 @@ public class ScheduleVO {
 		return "ScheduleVO [idx=" + idx + ", theaterIdx=" + theaterIdx + ", screenOrder=" + screenOrder + ", moviePlayTime="
 				+ moviePlayTime + ", totalView=" + totalView + ", movieIdx=" + movieIdx + ", playDate=" + playDate
 				+ ", startTime=" + startTime + ", movieTitle=" + movieTitle + ", theatherName=" + theatherName
-				+ ", movieMainImg=" + movieMainImg + ", movieRating=" + movieRating + "]";
+				+ ", movieMainImg=" + movieMainImg + ", ymdTime=" + ymdTime + ", movieRating=" + movieRating + "]";
 	}
 	
-	
-	
+
 }

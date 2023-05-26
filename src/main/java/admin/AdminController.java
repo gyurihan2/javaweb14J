@@ -20,6 +20,7 @@ import admin.movie.MovieUpdateOkCommand;
 import admin.schedule.ScheduleDetailPageCommand;
 import admin.schedule.ScheduleInsertOkCommand;
 import admin.schedule.ScheduleMgmtPageCommand;
+import admin.schedule.ScheduleTheaterChkPageCommand;
 import admin.schedule.ScheduleTheaterCommand;
 import admin.theater.TheaterCreateOkCommand;
 import admin.theater.TheaterDeleteOkCommand;
@@ -145,11 +146,17 @@ public class AdminController extends HttpServlet{
 			command.execute(request, response);
 			viewPage = "/include/message.jsp";
 		}
-		// 영화일정 상세 확인
+		// 영화일정 상세 확인(모든 상영관)
 		else if(com.equals("/ScheduleDetailPage")) {
 			command= new ScheduleDetailPageCommand();
 			command.execute(request, response);
 			viewPage += "/schedule/scheduleDetailPage.jsp";
+		}
+		// 영화일정 상세 확인(선택한 상영관)
+		else if(com.equals("/ScheduleTheaterChkPage")) {
+			command= new ScheduleTheaterChkPageCommand();
+			command.execute(request, response);
+			viewPage += "/schedule/ScheduleTheaterChkPage.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

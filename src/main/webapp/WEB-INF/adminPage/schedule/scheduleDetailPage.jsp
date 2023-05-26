@@ -6,50 +6,25 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>title</title>
+	<title>전체 상영관 정보 확인</title>
 	<jsp:include page="/include/bs4.jsp"/>
-	 <style>
-        .star {
-        position: relative;
-        font-size: 32px;
-        color: #ddd;
-        }
+	<style>
+		.star {
+		position: relative;
+		font-size: 32px;
+		color: #ddd;
+		}
+	
+		.star span {
+		width: 0;
+		position: absolute;
+		left: 0;
+		color: rgb(230, 230, 19);
+		overflow: hidden;
+		pointer-events: none;
+		}
+	</style>
 
-        .star input {
-        width: 100%;
-        height: 100%;
-        
-        padding-top: 20px;
-        position: absolute;
-        left: 0;
-        opacity: 0;
-        }
-
-        .star span {
-        width: 0;
-        position: absolute;
-        left: 0;
-        color: rgb(230, 230, 19);
-        overflow: hidden;
-        pointer-events: none;
-        }
-        .test1{
-            height: 50px;
-        }
-    </style>
-
-    <script>
-        'use strict';
-        
-        function drawStar(e){
-            let star = e.value*20;
-           
-            $(".star span").css({width:star+"%"});
-            $("#demo").html(e.value)
-        }
-        
-       
-    </script>
 </head>
 <body>
 

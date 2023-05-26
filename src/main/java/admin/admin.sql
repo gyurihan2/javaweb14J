@@ -72,6 +72,12 @@ where a.idx = b.theaterIdx and b.movieIdx = c.idx order by b.playDate,a.name;
 
 select title from movie;
 
+-- 스케줄 상영관 클릭 시 해당 일의 정보 출력 
+select a.idx, a.name, b.startTime,c.title, c.mainImg, c.totalView, c.rating, c.playTime, concat(b.playDate,' ',b.startTime) as ymdTime from theater as a, 
+(select * from schedule as c where playDate = '2023-06-01') as b,
+(select * from movie) as c
+where a.idx = b.theaterIdx and b.movieIdx = c.idx  and a.name='1 상영관' order by b.startTime;
+
 -- 메인페이지에 표시할 영화 목록(오늘 날짜에 일정이 등록된 영화 목록)
 select * from schedule where playDate ='2023-05-25'
 select movieIdx from schedule where playDate ='2023-05-25' group by movieidx;

@@ -42,6 +42,7 @@ public class ScheduleDAO {
 				vo.setThema(rs.getString("thema"));
 				vo.setWork(rs.getString("work"));
 				
+				
 				vos.add(vo);
 			}
 			
@@ -119,7 +120,7 @@ public class ScheduleDAO {
 			sql="select a.idx, a.name, c.title, c.mainImg, c.totalView, c.rating, c.playTime from theater as a, "
 					+ "(select * from schedule as c where playDate = ? group by theaterIdx) as b, "
 					+ "(select * from movie) as c "
-					+ "where a.idx = b.theaterIdx and b.movieIdx = c.idx order by b.playDate,a.name;";
+					+ "where a.idx = b.theaterIdx and b.movieIdx = c.idx order by b.playDate,a.name";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, ymd);
 			
@@ -145,5 +146,43 @@ public class ScheduleDAO {
 		
 		return vos;
 	}
+	//날짜(년-월-일)에 해당 하는 상영관 일정 확인(특정 상영관)
+	public ArrayList<ScheduleVO> getScheduleDetailPage(String theaterName, String playDate) {
+ArrayList<ScheduleVO> vos = null;
+		
+		try {
+			sql="select a.idx, a.name, b.startTime, c.title, c.mainImg, c.totalView, c.rating, c.playTime from theater as a, "
+					+ "(select * from schedule as c where playDate = ?) as b, "
+					+ "(select * from movie) as c "
+					+ "where a.idx = b.theaterIdx and b.movieIdx = c.idx and a.name=? order by b.startTime";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, playDate);
+			pstmt.setString(2, theaterName);
+			
+			rs = pstmt.executeQuery();
+			vos =  new ArrayList<>();
+			
+			while(rs.next()) {
+				vo = new ScheduleVO();
+				vo.setTheatherName(rs.getString("name"));
+				vo.setMovieTitle(rs.getString("title"));
+				vo.setPlayDate(playDate);
+				vo.setMovieMainImg(rs.getString("mainImg"));
+				vo.setTotalView(rs.getInt("totalView"));
+				vo.setMovieRating(rs.getFloat("rating"));
+				vo.setMoviePlayTime(rs.getInt("playTime"));
+				vo.setStartTime(rs.getString("startTime"));
+				
+				
+				vos.add(vo);
+			}
+		}catch (SQLException e) {
+			System.out.println("admin.theater.TheaterDAO.setScheduleInsertOk SQL 에러\n" + e);
+		}finally {
+			getConn.rsClose();
+		}
+		return vos;
+	}
+	
 	
 }

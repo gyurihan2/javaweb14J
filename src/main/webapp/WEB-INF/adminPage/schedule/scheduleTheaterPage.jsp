@@ -22,6 +22,7 @@
 </head>
 <body>
 <p><br/></p>
+<!-- 일정 추가 시 사용 가능한 상영관 출력 -->
 <div class="container">
 	<c:if test="${empty vos }">
 		사용 가능한 상영관이 없습니다.<br/>
