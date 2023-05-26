@@ -175,14 +175,30 @@
       	  			<!-- 구분자 '/' 기준으로 분리 -->
       	  			<c:set var="name" value="${fn:split(vo.theaterName,'/')}"/>
       	  				<c:forEach var="temp" items="${name}">
-      	  					<c:if test="${toDay > st.count }">
-	      	  					<span style="background-color:#9D968F;" class="badge btn" onclick="scheduleTheaterChk('${temp}','${vo.playDate}')"><font color="#212121">${temp}</font></span>
+      	  					<c:if test="${toYear > yy}" >
+      	  						<span style="background-color:#9D968F;" class="badge btn" onclick="scheduleTheaterChk('${temp}','${vo.playDate}')"><font color="#212121">${temp}</font></span>
       	  					</c:if>
-      	  					<c:if test="${toDay == st.count }">
-	      	  					<span class="badge bg-success btn" onclick="scheduleTheaterChk('${temp}','${vo.playDate}')"><font color="#212121">${temp}</font></span>
+      	  					<c:if test="${toYear == yy}">
+      	  						<c:if test="${toMonth > mm}">
+      	  							<span style="background-color:#9D968F;" class="badge btn" onclick="scheduleTheaterChk('${temp}','${vo.playDate}')"><font color="#212121">${temp}</font></span>
+      	  						</c:if>
+      	  						<c:if test="${toMonth == mm}">
+		      	  					<c:if test="${toDay > st.count }">
+			      	  					<span style="background-color:#9D968F;" class="badge btn" onclick="scheduleTheaterChk('${temp}','${vo.playDate}')"><font color="#212121">${temp}</font></span>
+		      	  					</c:if>
+		      	  					<c:if test="${toDay == st.count }">
+			      	  					<span class="badge bg-success btn" onclick="scheduleTheaterChk('${temp}','${vo.playDate}')"><font color="#212121">${temp}</font></span>
+		      	  					</c:if>
+		      	  					<c:if test="${toDay < st.count }">
+			      	  					<span style="background-color:#7D9FDB;" class="badge btn" onclick="scheduleTheaterChk('${temp}','${vo.playDate}')"><font color="#212121">${temp}</font></span>
+		      	  					</c:if>
+      	  						</c:if>
+      	  						<c:if test="${toMonth < mm}">
+      	  							<span style="background-color:#7D9FDB;" class="badge btn" onclick="scheduleTheaterChk('${temp}','${vo.playDate}')"><font color="#212121">${temp}</font></span>
+      	  						</c:if>
       	  					</c:if>
-      	  					<c:if test="${toDay < st.count }">
-	      	  					<span style="background-color:#7D9FDB;" class="badge btn" onclick="scheduleTheaterChk('${temp}','${vo.playDate}')"><font color="#212121">${temp}</font></span>
+      	  					<c:if test="${toYear < yy}" >
+      	  						<span style="background-color:#7D9FDB;" class="badge btn" onclick="scheduleTheaterChk('${temp}','${vo.playDate}')"><font color="#212121">${temp}</font></span>
       	  					</c:if>
       	  				</c:forEach>
       	  		</c:if>
