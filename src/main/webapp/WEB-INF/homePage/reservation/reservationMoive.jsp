@@ -68,7 +68,6 @@
 					scheduleIdx:scheduleIdx
 				},
 				success:function(res){
-					console.log(res);
 					let totSeat=${vos[0].seat};
 					$("#scheduleList_"+scheduleIdx).text("총 좌석수: "+${vos[0].seat}+" / 예약 가능 좌석수: "+(totSeat-res));
 				
@@ -108,14 +107,16 @@
 <p><br/></p>
 	<div class="tab">
 	  <c:forEach var="vo" items="${vos}">
-	  	<button class="tablinks text-center" onclick="openCity(event, 'orderChk${vo.screenOrder}','${vo.idx}')" id="order${vo.screenOrder}">${vo.screenOrder}회차 (${fn:substring(vo.startTime,0,5)})</button>
+	  	<button class="tablinks text-center" onclick="openCity(event, 'orderChk${vo.screenOrder}','${vo.idx}')" id="order${vo.screenOrder}">
+	  		${vo.screenOrder}회차 (${fn:substring(vo.startTime,0,5)})
+	  	</button>
 	  </c:forEach>
 	</div>
 
 	<c:forEach var="vo" items="${vos}" >
 		<div id="orderChk${vo.screenOrder}" class="tabcontent">
 		  <h3>${param.title} ${vo.screenOrder}회차 좌석 리스트</h3>
-		  <div id="scheduleList_${vo.idx}">aaa</div>
+		  <div id="scheduleList_${vo.idx}"></div>
 		  <button type="button" onclick="selectMovieOrder('${vo.idx}')">${vo.screenOrder} 회차 예약</button>
 		</div>
 	</c:forEach>
