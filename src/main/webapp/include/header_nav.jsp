@@ -97,7 +97,7 @@
        	</c:if>
        	<c:if test="${sLevel == 100}">
        		<div class="mr-3">
-	          <a href="http://192.168.50.87:9090${ctp}/MainPage.ad" class="text-secondary"><img src="${ctp}/images/topMenu/register.png" style="width:26px; height:26px;"><br/>관리자 페이지</a>
+	          <a href="http://localhost:9090${ctp}/MainPage.ad" class="text-secondary"><img src="${ctp}/images/topMenu/register.png" style="width:26px; height:26px;"><br/>관리자 페이지</a>
        		</div>
        	</c:if>
         <c:if test="${!empty sMid }">
@@ -121,7 +121,7 @@
 	                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 	                    <div class="navbar-nav">
 	                        <a class="nav-link" href="#">영화</a>
-	                        <a class="nav-link" href="#">예매</a>
+	                        <a class="nav-link" href="${ctp}/ReservationPage.res">예매</a>
 	                        <a class="nav-link" href="#">상영관</a>
 	                        <a class="nav-link" href="#">공지사항</a>
 	                    </div>

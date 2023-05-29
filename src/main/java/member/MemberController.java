@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("*.mem")
 public class MemberController extends HttpServlet{
@@ -19,6 +20,9 @@ public class MemberController extends HttpServlet{
 		
 		String uri = request.getRequestURI();
 		String com = uri.substring(uri.lastIndexOf("/"),uri.lastIndexOf("."));
+		
+		HttpSession session = request.getSession(); 
+		String sMid = (String)session.getAttribute("sMid");
 		
 		// 메인 홈페이지
 		if(com.equals("/MainHomepage")) {
@@ -83,6 +87,11 @@ public class MemberController extends HttpServlet{
 			command = new PwdChangeOkCommand();
 			command.execute(request, response);
 			return;
+		}
+		else if(sMid == null) {
+			request.setAttribute("url", request.getContextPath()+"/LoginPage.mem");
+			request.setAttribute("msg", "로그인 먼저 하세요.");
+			viewPage = "/include/message.jsp";
 		}
 		// 로그아웃 처리
 		else if(com.equals("/LoginOutOk")) {

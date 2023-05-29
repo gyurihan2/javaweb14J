@@ -17,8 +17,8 @@
     function submitOk() {
 			let dupulMid = $("#dupulMid").css("display");
 			let dupulNickName = $("#dupulNickName").css("display");
-			//let statusPwd = regPwd(myform.pwd[0]);
-    	//let dupulPwd = chkPwd();
+			let statusPwd = regPwd(myform.pwd[0]);
+    	let dupulPwd = chkPwd();
     	let statusNickName = $("#nickName").val();
     	let statusName = $("#name").val();
     	let statusEmail = $("#email1").val();
@@ -56,11 +56,11 @@
 				return false;
 			}
 		
-			/* else if(!statusPwd || !dupulPwd){
+			else if(!statusPwd || !dupulPwd){
 				alert("비밀번호를 확인하세요");
 				$("#pwd").focus();
 				return false;
-			} */
+			}
 			else if(statusNickName == ""){
 				alert("닉네임을 확인하세요")
 				$("#nickName").focus();
@@ -95,7 +95,12 @@
 				myform.mid.focus();
 				return false;
 			}
-			if(!regMid(mid)){
+			else if(mid.value.indexOf("admin")==0){
+				alert("사용할수없는 아이디 입니다.");
+				myform.mid.focus();
+				return false;
+			}
+			else if(!regMid(mid)){
 				alert(mid.value+"아이디 입력 형식을 확인하세요!");
 				myform.mid.focus();
 				return false;
@@ -113,7 +118,12 @@
 				myform.nickName.focus();
 				return false;
 			}
-			if(!regNickName(nickName)){
+			else if(nickName.value.indexOf("admin")==0){
+				alert("사용할수없는 닉네임 입니다.");
+				myform.mid.focus();
+				return false;
+			}
+			else if(!regNickName(nickName)){
 				alert(nickName.value+"닉네임 입력 형식을 확인하세요!");
 				myform.nickName.focus();
 				return false;
@@ -204,9 +214,9 @@
 	      <label for="identiNum1">주민번호:</label>
 	      <span class="ml-3" id="regIdentiNum"></span>
 	        <div class="input-group mb-3">
-	          <input type="text" class="form-control mr-1" placeholder="주민번호 입력하세요." id="identiNum1" name="identiNum1" maxlength=6 required />
+	          <input type="number" class="form-control mr-1" placeholder="주민번호 입력하세요." id="identiNum1" name="identiNum1" maxlength=6 required />
 	          <div class="input-group-append">
-	            -<input type="password" class="form-control ml-1" id="identiNum2" name="identiNum2" maxlength=7 required/>
+	            -<input type="number" class="form-control ml-1" id="identiNum2" name="identiNum2" maxlength=7 required style="-webkit-text-security: disc;"/>
 	          </div>
 	        </div>
 	    </div>

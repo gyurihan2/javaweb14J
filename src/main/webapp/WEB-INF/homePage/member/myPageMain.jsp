@@ -18,7 +18,7 @@
 			function modifyOk(){
 				/* 유효성 검사 필요 */
 				let name = $("#name").val();
-				let birthday = $("#name").val();
+				let birthday = $("#birthday").val();
 				let email = $("#email1").val() + "@" + $("#email2").val();
 				let phone = $("#phone1").val()+"-"+$("#phone2").val()+"-"+$("#phone3").val();
 				
@@ -154,7 +154,7 @@
 		    </div>
 		    <div class="form-group">
 		      <label for="birthday">생일</label>
-		      <input type="date" name="birthday" class="form-control" value="${vo.birthday}"/>
+		      <input type="date" name="birthday" id="birthday" class="form-control" value="${vo.birthday}"/>
 		    </div>
 		    <div class="form-group">
 		    	<c:set var="phones" value="${fn:split(vo.phone,'-')}"></c:set>

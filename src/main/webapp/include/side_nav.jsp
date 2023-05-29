@@ -94,8 +94,8 @@ $(function(){
   </button>
   <div class="dropdown-container">
     <a href="${ctp}/TheaterMgmtPage.ad">상영관 관리</a>
-    <a href="${ctp}/ScheduleMgmtPage.ad">영화 일정 관리</a>
     <a href="${ctp}/MovieMgmtPage.ad">영화 관리</a>
+    <a href="${ctp}/ScheduleMgmtPage.ad">영화 일정 관리</a>
   </div>
   <a href="#clients"><i class="fa fa-fw fa-user"></i> Clients</a>
   <button class="dropdown-btn">
@@ -107,6 +107,7 @@ $(function(){
     <a href="#">예약 현황</a>
     <a href="#">매출 현황</a>
   </div>
+ <a href="${ctp}/MainHomepage.mem"><i class="fa fa-sign-out" aria-hidden="true"></i>종료</a>
  </div>
 </div>
   

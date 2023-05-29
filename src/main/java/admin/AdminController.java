@@ -41,8 +41,6 @@ public class AdminController extends HttpServlet{
 		// 관리자 Level = 100
 		int sLevel = session.getAttribute("sLevel") == null ? 0: (int)session.getAttribute("sLevel");
 		
-		int level = request.getParameter("level")==null ? 0 : Integer.parseInt(request.getParameter("level"));
-		
 		//  보안 처리
 		if(sLevel != 100) {
 			request.setAttribute("url", request.getContextPath());

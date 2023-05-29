@@ -27,3 +27,4 @@ drop table member;
 desc member;
 
 select * from member;
+alter table member modify birthday date;

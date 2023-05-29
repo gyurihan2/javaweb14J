@@ -91,11 +91,11 @@
       <div class="container-xl" id="movieContets">
         <div class="row">
             <div class="col-4  text-left" id="movieStaus">
-                <button type="button" class="btn btn-light text-secondary font-weight-bold">무비차트</button>
-                <button type="button" class="btn btn-light text-secondary font-weight-bold">상영예정</button>
+                <button type="button" class="btn btn-light text-secondary font-weight-bold">상영 영화</button>
+                <!-- <button type="button" class="btn btn-light text-secondary font-weight-bold">상영예정</button> -->
             </div>
             <div class="col "></div>
-            <div class="col-2  text-right" id="movieAllView"><button><b>전체 보기 ></b></button></div>
+            <div class="col-2  text-right" id="movieAllView"><button onclick="location.href='${ctp}/ReservationPage.res';"><b>예약하기</b></button></div>
         </div>
         <div class="row mt-3">
             <div class="col align-self-center"> <!--왼쪽 공백-->
