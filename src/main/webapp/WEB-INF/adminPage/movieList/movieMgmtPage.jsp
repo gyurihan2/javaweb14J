@@ -137,7 +137,7 @@
 		}
 		//영화 상세보기
 		function movieDetail(idx){
-			let url="http://localhost:9090${ctp}/MovieDetailPage.ad?idx="+idx;
+			let url="${ctp}/MovieDetailPage.ad?idx="+idx;
 			window.open(url,'영화 상세보기','width=1000px,height=700px');
 		}
 		

@@ -131,7 +131,7 @@
 			// 0: playDate 1: theaterName 2:title
 			let arr = $(this).val().split("/");
 			console.log(arr);
-			let url="http://localhost:9090${ctp}/ReservationMoive.res?playDate="+arr[0]+"&theaterName="+arr[1]+"&title="+arr[2];
+			let url="${ctp}/ReservationMoive.res?playDate="+arr[0]+"&theaterName="+arr[1]+"&title="+arr[2];
 			window.open(url,'영화 예매','width=1000px,height=700px,location=no');
 	  });
 	 

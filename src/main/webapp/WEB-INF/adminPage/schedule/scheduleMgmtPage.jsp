@@ -37,7 +37,7 @@
   			alert("상영 종료 일자를 선택 하세요");
   		}
   		
-  		let url="http://localhost:9090${ctp}/ScheduleTheater.ad?startDate="+startDate+"&endDate="+endDate;
+  		let url="${ctp}/ScheduleTheater.ad?startDate="+startDate+"&endDate="+endDate;
   		window.open(url,'상영관 스케줄','width=1000px,height=700px');
   	}
   	
@@ -50,7 +50,7 @@
   			return false;
   		}
   		
-  		let url="http://localhost:9090${ctp}/MovieListPage.ad?startDate="+startDate;
+  		let url="${ctp}/MovieListPage.ad?startDate="+startDate;
   		window.open(url,'영화 조회','width=1000px,height=700px');
   	}
   	
@@ -114,7 +114,7 @@
 		}
 		// 해당일의 버튼 클릭시 상영관 정보 및 상영중인 영화 및 일정 확인
 		function scheduleTheaterChk(theaterName,playDate){
-			let url="http://localhost:9090${ctp}/ScheduleTheaterChkPage.ad?theaterName="+theaterName+"&playDate="+playDate;
+			let url="{ctp}/ScheduleTheaterChkPage.ad?theaterName="+theaterName+"&playDate="+playDate;
 	  	window.open(url,'상영관 일정 확인','width=1000px,height=700px');
 		}
   	
