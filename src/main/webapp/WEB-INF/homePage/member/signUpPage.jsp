@@ -190,13 +190,13 @@
 	    </div>
 	    <div class="form-group">
 	      <label for="pwd">비밀번호 :</label>
-	      <span class="ml-3" id="regPwd"></span>
 	      <input type="password" class="form-control" id="pwd1" placeholder="비밀번호를 입력하세요." name="pwd" required />
 	    </div>
+      <span id="regPwd"></span>
 	    <div class="form-group">
 	      <label for="pwd2">비밀번호 확인 :</label>
 	      <span class="ml-3" id="chkPwd"></span>
-	      <input type="password" class="form-control" id="pwd2" placeholder="비밀번호를 입력하세요." name="pwd" required />
+	      <input type="password" class="form-control col" id="pwd2" placeholder="비밀번호를 입력하세요." name="pwd" required />
 	    </div>
 	    <div class="form-group">
 	      <label for="nickName">닉네임 : &nbsp; &nbsp;
